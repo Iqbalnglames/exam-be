@@ -19,3 +19,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::post("imtihan", [ImtihanController::class, 'inputJawaban']);
+Route::get("imtihan", [ImtihanController::class, 'Result']);

@@ -11,16 +11,8 @@ class ImtihanController extends Controller
     public function inputJawaban (Request $request) 
     {
         $validator = Validator::make($request->all(),[
-            'nama' => 'required',
-            'satu' => 'required',
-            'dua' => 'required',
-            'tiga' => 'required',
-            'empat' => 'required',
-            'lima' => 'required',
-            'enam' => 'required',
-            'tujuh' => 'required',
-            'delapan' => 'required',
-            'sembilan' => 'required',
+            'nama' => 'required',            
+            'jawaban' => 'required',
         ]);
         if($validator->fails())
         {
@@ -31,20 +23,21 @@ class ImtihanController extends Controller
         }
         $jawaban = Imtihan::create([
             'nama' => $request->nama,
-            'satu' => $request->satu,
-            'dua' => $request->dua,
-            'tiga' => $request->tiga,
-            'empat' => $request->empat,
-            'lima' => $request->lima,
-            'enam' => $request->enam,
-            'tujuh' => $request->tujuh,
-            'delapan' => $request->delapan,
-            'sembilan' => $request->sembilan,
+            'jawaban' => $request->jawaban,
+            
         ]);
         return response()->json([
             'succes' => true,
             'message' => 'jawaban berhasil dikirim!!',
             'data' => $jawaban,
+        ]);
+    }
+    public function Result ()
+    {
+        $examsData = Imtihan::all();
+        return response()->json([
+            'success' => true,
+            'data' => $examsData,
         ]);
     }
 }
